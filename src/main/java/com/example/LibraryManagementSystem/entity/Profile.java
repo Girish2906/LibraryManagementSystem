@@ -2,6 +2,7 @@ package com.example.LibraryManagementSystem.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -27,9 +28,11 @@ public class Profile {
     private LocalDateTime updatedAt;
 
     @OneToOne(mappedBy = "profile")
+
     private Reader reader ;
 
-    @OneToOne(mappedBy = "profile")
+    @OneToOne(mappedBy = "profile" , cascade = {CascadeType.PERSIST , CascadeType.MERGE})
+    @ToString.Exclude
     private Author author ;
 
 
