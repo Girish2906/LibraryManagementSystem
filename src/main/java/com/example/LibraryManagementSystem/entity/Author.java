@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -29,12 +30,11 @@ public class Author {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author" , cascade = {CascadeType.REMOVE})
     @ToString.Exclude
     private List<Book> books  ;
 
-    @OneToOne(cascade = {CascadeType.PERSIST , CascadeType.MERGE })
+    @OneToOne(cascade = {CascadeType.PERSIST , CascadeType.MERGE , CascadeType.REMOVE })
     @ToString.Exclude
     private Profile profile ;
-
 }

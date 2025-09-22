@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.ResourceAccessException;
 
 // we use configuration on the class, where we have defined methods whose return type we want to be treated as beans. because we don't own these beans, so we can't annotate them with component annotation
 // component is a class level annotation, it tells spring to instantiate it and manage it.
@@ -107,11 +108,14 @@ public class DataInitializer {
 //                Profile p4 = profileRepository.save(profile3);
 //                Author a6 = authorRepository.save(author6);
 
-                Profile p9 = profileRepository.findById(7L).orElseThrow(() -> new RuntimeException("Resource Not Found")) ;
+//                Profile p9 = profileRepository.findById(7L).orElseThrow(() -> new RuntimeException("Resource Not Found")) ;
 //                System.out.println(p9);
-                Author a10 = p9.getAuthor() ;
-                System.out.println("113 author printed: "  + a10);
+//                Author a10 = p9.getAuthor() ;
+//                System.out.println("113 author printed: "  + a10);
+                Author author = authorRepository.findById(1L).orElseThrow(() -> new ResourceAccessException("Author not found with id: 1")) ;
+                System.out.println(116 + " " + author );
 
+                authorRepository.deleteById(3L);
             }
         } ;
     }

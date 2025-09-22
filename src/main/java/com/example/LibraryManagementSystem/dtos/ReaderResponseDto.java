@@ -1,18 +1,17 @@
 package com.example.LibraryManagementSystem.dtos;
 
-import com.example.LibraryManagementSystem.entity.Book;
 import com.example.LibraryManagementSystem.entity.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class AuthorResponseDto {
-    private ProfileResponseDto profileResponseDto ;
-    private List<BookResponseDto> books ;
+@NoArgsConstructor
+public class ReaderResponseDto {
+    public Profile profile ;
+    public List<BookResponseDto> borrowedBooks ;
+    public List<ReviewResponseDto> reviews ;
 }

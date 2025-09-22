@@ -1,5 +1,6 @@
 package com.example.LibraryManagementSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -28,13 +29,10 @@ public class Profile {
     private LocalDateTime updatedAt;
 
     @OneToOne(mappedBy = "profile")
-
+    @JsonIgnore
     private Reader reader ;
 
     @OneToOne(mappedBy = "profile" , cascade = {CascadeType.PERSIST , CascadeType.MERGE})
     @ToString.Exclude
     private Author author ;
-
-
-
 }

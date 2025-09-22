@@ -15,28 +15,19 @@ import java.util.List;
 public class Reader {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
+    private Long id;
 
-    private String name ;
-    private String phoneNumber ;
-    @CreationTimestamp
-    private LocalDateTime createdAt ;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt ;
+    @OneToOne(cascade = {CascadeType.PERSIST , CascadeType.MERGE})
+    private Profile profile;
 
     @OneToMany(mappedBy = "reader")
-    private List<Review> reviews ;
-
-    @OneToOne
-    private Profile profile ;
+    private List<Review> reviews = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
-            name = "reader_book" ,
+            name = "reader_book",
             joinColumns = @JoinColumn(name = "reader_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
-    private List<Book> borrowedBooks ;
-
+    private List<Book> borrowedBooks = new ArrayList<>();
 }
